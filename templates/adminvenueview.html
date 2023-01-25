@@ -1,0 +1,41 @@
+{% extends 'adminindex.html' %}
+{% block content %}
+
+<style>
+    .text-dark{
+        color:darkblue !important
+    }
+</style>
+<div class="container text-center text-danger">
+   <h2>Click The Button to</h2> <a href="{%url 'Addvenue' %}" class="btn btn-primary" >Add New Venue</a>
+</div>
+<br><br><br>
+
+{% for message in messages %}
+    <h5 style="color:red">{{message}}</h5>
+{% endfor %}
+    
+<div class="container mt-5">
+    <table class="table table-striped bg-info text-dark">
+        <tr>
+            <th>Venue Name</th>
+            <th>Venu Seat</th>
+            <th>Price</th>
+            <th>Bookings</th>
+            <th>Action</th>
+        </tr>
+        
+        {% for venue in venues  %}    
+        <tr>
+            <td>{{venue.Venue_Name}}</td>
+            <td>{{venue.Seat_Numbers}}</td>
+            <td>{{venue.Price}}</td>
+            <td></td>
+            <td><a href="{%url 'ViewVenue' venue.id %}" class="btn btn-info">View</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'adminindex.html' %}
+{% block content %}
+<style>
+    .text-dark{
+        color:darkblue !important
+    }
+</style>
+
+<div class="container">
+    {% for message in messages  %}
+        <h4 style="color:red">{{message}}</h4> 
+        {% endfor %}
+    <table class="table table-striped bg-info text-dark">
+        <tr>
+            <th>Name</th>
+            <th>Venue name</th>
+            <th>Purpose</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        
+        {% for event in events  %}
+              
+        <tr>
+            <td>{{event.Name}}</td>
+            <td>{{event.venue}}</td>
+            <td>{{event.event_discription}}</td>
+            <td>{{event.Date}}</td>
+            <td>{{event.start_time}}</td>
+            <td>{{event.end_time}}</td>
+            {%if event.status == True %}
+            <td style="color: green;">Approved</td>
+            {% else %}
+            <td style="color:rgb(205, 205, 103)">Pending</td>
+            {% endif %}
+            {%if event.status == True %}
+            <td><a href="{%url 'ApproveBooking' event.id %}" class="btn btn-danger">Cancel Booking</a></td>
+            {% else %}
+            <td> <a href="{%url 'ApproveBooking' event.id %}" class="btn btn-success">Approve</a>
+                <a href="{%url 'DeleteBooking' event.id %}" class="btn btn-danger">Delete</a>
+            
+            </td>
+
+            {% endif %}
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+{% endblock %}
+    

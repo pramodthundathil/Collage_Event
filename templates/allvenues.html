@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+<section id="event">
+    <div class="container mt-5">
+        <div class="row mt-5">
+            <div class="col-sm-12 col-md-9">
+<br><br><br><br><br>
+
+                <div id="event-carousel" class="carousel slide" data-interval="false">
+                    <h2 class="heading">Avialable Venues</h2>
+                    <a class="even-control-left" href="#event-carousel" data-slide="prev"><i
+                            class="fa fa-angle-left"></i></a>
+                    <a class="even-control-right" href="#event-carousel" data-slide="next"><i
+                            class="fa fa-angle-right"></i></a>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="row">
+                                
+                                {% for event in venues  %}
+                                <div class="col-sm-4">
+                                    <div class="single-event">
+                                        <img class="img-responsive" src="{{event.Venue_Image.url}}"
+                                            alt="event-image" style="height: 200px;">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                        <h4>{{event.Venue_Name}}</h4>
+                                        <h5>Seats: {{event.Seat_Numbers}}</h5>
+                                        <h5>{{event.Price}}</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br><br><br>
+                                        <a href="{%url 'Booking' event.id %}" class="btn btn-warning">Book</a>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                                
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="row">
+                                {% for event in venues  %}
+                                <div class="col-sm-4">
+                                    <div class="single-event">
+                                        <img class="img-responsive" src="{{event.Venue_Image.url}}"
+                                            alt="event-image" style="height: 200px;">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                        <h4>{{event.Venue_Name}}</h4>
+                                        <h5>Seats: {{event.Seat_Numbers}}</h5>
+                                        <h5>{{event.Price}}</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <br><br><br>
+                                        <a href="{%url 'Booking' event.id %}" class="btn btn-warning">Book</a>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="guitar">
+                <img class="img-responsive" src="{%static 'images/guitar.png' %}" alt="guitar">
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+    

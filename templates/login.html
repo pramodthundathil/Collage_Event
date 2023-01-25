@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+    .authcontainer {
+        background-color: #efc94c;
+        width: 40%;
+        margin: auto;
+        margin-top: 15%;
+        border-radius: 60px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    }
+    .authcontainer input{
+        width: 80%;
+        padding: 7px;
+        border: .4px solid #ae943c;
+    }
+</style>
+<div class="container-fluid">
+    <div class="authcontainer text-center">
+        <br><br>
+        <h3 class="">Login</h3>
+        {% for message in messages  %}
+        <h6 style="color:red">{{message}}</h6> 
+        {% endfor %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="uname" placeholder="Username" required><br><br>
+            <input type="password" name="pswd" placeholder="Password" required><br><br><br>
+            <button class="btn btn-primary">Login</button><br><br>
+            dont have an account Register <a href="{%url 'SignUp' %}">Here</a>
+            <br><br>
+        </form>
+    </div>
+</div>
+<br><br><br><br>
+{% endblock %}

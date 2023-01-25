@@ -1,0 +1,98 @@
+{% extends "adminindex.html" %}
+
+{% block content %}
+<style>
+    .venuesview {
+        width: 90%;
+        border: 5px solid rgb(67, 67, 135);
+        margin: auto;
+        color: darkblue !important;
+        padding: 20px;
+    }
+
+    .venuesview h2 {
+        color: rgb(40, 106, 129);
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .venuesview input {
+        width: 100%;
+        padding: 5px;
+        border: .3px solid black;
+    }
+</style>
+
+<div class="container">
+    <div class="venuesview">
+        {% for venue in venues %}
+
+        <h2>{{venue}}</h2><br>
+        {% for message in messages %}
+        <h5 style="color:red">{{message}}</h5>
+        {% endfor %}
+        <div class="row">
+
+            <div class="col-md-6">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <table class="table">
+                        <tr>
+                            <th>
+                                <label for="">Venue Name:</label>
+                            </th>
+                            <td>
+                                <input type="text" name="venue_name" value="{{venue.Venue_Name}}">
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <th>
+                                <label for="">Number of seats:</label>
+                            </th>
+                            <td>
+                                <input type="text" name="seat_num" value="{{venue.Seat_Numbers}}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="">Price:</label>
+                            </th>
+                            <td>
+                                <input type="text" name="price" value="{{venue.Price}}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="">Venue Discription: </label>
+                            </th>
+                            <td>
+                                <input type="text" name="dis" value="{{venue.Venue_Discription}}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <input type="file" name="img" required>Upload New Image
+                            </th>
+                        </tr>
+                    </table>
+                    <br>
+                    <button type="submit" class="btn btn-warning">Update</button>
+                </form>
+
+            </div>
+            <div class="col-md-6">
+                <img src="{{venue.Venue_Image.url}}" style="width:80%;height:80%" alt="">
+                <br><br>
+                <a href="{% url 'DeleteVenue' venue.id %}" class="btn btn-danger">Delete</a>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+<br><br>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+    .authcontainer {
+        background-color: #efc94c;
+        width: 40%;
+        margin: auto;
+        margin-top: 15%;
+        border-radius: 60px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    }
+    .authcontainer input{
+        width: 80%;
+        padding: 7px;
+        border: .4px solid #ae943c;
+        color: gray !important;
+    }
+    ul{
+        list-style: none;
+    }
+</style>
+<div class="container-fluid">
+    <div class="authcontainer text-center">
+        <br><br>
+        <h3 class="">Register</h3>
+
+        {% for message in messages  %}
+        <h5 style="color:red">{{message}}</h5> 
+        {% endfor %}
+        <h5 style="color:red">{{form.errors}}</h5>
+        <form method="post">
+            {% csrf_token %}
+          
+
+                    {% for fields in form %}
+                    {{fields.label}}: <br>
+                    {{fields}} <br><br>
+                        
+                    {% endfor %}
+            <button class="btn btn-primary">Register</button><br><br>
+            Have an account Login <a href="{%url 'SignIn' %}">Here</a>
+            <br><br>
+        </form>
+    </div>
+</div>
+<br><br><br><br>
+{% endblock %}
